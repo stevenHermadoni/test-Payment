@@ -75,9 +75,9 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => 'require', // <--- WAJIB ADA
+            'sslmode' => 'require', // Memaksa SSL
             'options' => [
-                PDO::ATTR_TIMEOUT => 5, // Tambahan agar tidak gantung terlalu lama
+                PDO::ATTR_EMULATE_PREPARES => true, // Penting untuk Neon Pooling
             ],
         ],
 
