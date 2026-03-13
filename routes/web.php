@@ -40,16 +40,3 @@ require __DIR__ . '/auth.php';
 Route::get('/dashboard', [OrderController::class, 'index'])
     ->middleware(['auth'])
     ->name('dashboard');
-
-// Rute sementara untuk migrasi database di Vercel
-Route::get('/init-db', function () {
-    try {
-        // Menjalankan migration dan seeder
-        Artisan::call('migrate:fresh --seed');
-
-        return "<h1>✅ Database Sukses Dimigrasi!</h1><p>Semua tabel dan data awal sudah masuk ke Postgres.</p>";
-    } catch (\Exception $e) {
-        // Jika ada error, tampilkan pesannya
-        return "<h1>❌ Gagal Migrasi:</h1><pre>" . $e->getMessage() . "</pre>";
-    }
-});
