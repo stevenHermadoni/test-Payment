@@ -74,8 +74,11 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            'schema' => 'public',
-            'sslmode' => 'prefer',
+            'search_path' => 'public',
+            'sslmode' => 'require', // <--- WAJIB ADA
+            'options' => [
+                PDO::ATTR_TIMEOUT => 5, // Tambahan agar tidak gantung terlalu lama
+            ],
         ],
 
         'sqlsrv' => [
@@ -123,7 +126,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
